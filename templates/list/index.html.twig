@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    <style>
+        .align-center {
+            margin: auto auto;
+        }
+    </style>
+{% endblock %}
+{% block title %}Tienda{% endblock %}
+{% block body %}
+    <div class='row'>
+            <div class="col-lg-8 align-center">
+                <h1>Tienda</h1>
+                <table class="table table-striped ">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Descripcion</th>
+                            <th>Precio</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for curso in cursos %}
+                            <tr>
+                                <td>{{curso.nombre}}</td>
+                                <td>{{curso.descripcion}}</td>
+                                <td>{{curso.precio}}</td>
+                                <td>
+                                    <a href="{{ path('app_edit', {id:curso.id}) }}" class="btn btn-primary">Editar</a>
+                                    <a href="{{ path('app_delete', {id:curso.id}) }}" class="btn btn-danger">Eliminar</a>
+                                    
+                                </td>
+                            </tr>
+
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+    </div>        
+
+    <div class="row">
+        <div class="col-lg-8 align-center">
+            <a href="{{path('app_create')}}" class="btn btn-primary">Crear curso</a>
+        </div>
+    </div>
+{% endblock %}
